@@ -20,14 +20,14 @@ function Sidebar() {
         },
         {
             name: 'Banner',
-            icon: <DashboardIcon />,
+            icon: <ViewCarouselIcon />,
             link: '/admin/banner',
             hasChildren: false,
             addClass: location.pathname === "/admin/banner" ? "active" : null
         },
         {
             name: 'Product',
-            icon: <DashboardIcon />,
+            icon: <InventoryIcon />,
             link: '#',
             hasChild: true,
             addClass: location.pathname.includes('product') ? "active" : null,
@@ -61,9 +61,7 @@ function Sidebar() {
                     />
                 )
             }
-            {/* <PageNavi pageIcon={<DashboardIcon />} pageName="Dashboard" />
-            <PageNavi pageIcon={<ViewCarouselIcon />} pageName="Banners" addClass="" hasChild={<PageNaviChild addClass="" pageName="Subbanner" />} />
-            <PageNavi pageIcon={<InventoryIcon />} pageName="Products" /> */}
+            
         </div>
     )
 }

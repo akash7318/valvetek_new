@@ -19,13 +19,31 @@
 
 .sidebar_box {
     width: 18%;
-    padding: 18px;
+    padding: 25px;
     border-right: 1px solid rgb(225, 223, 223);
     height: 100%;
+    overflow-y: auto;
 }
 
 .content_box {
     width: 82%;
-    padding: 18px;
+    padding: 25px;
     height: 100%;
+    overflow-y: auto;
+    background: rgb(243 244 246);
+}
+
+.content_box::-webkit-scrollbar,
+.sidebar_box::-webkit-scrollbar{
+    width: 10px;
+    background: rgb(231, 242, 250);
+    /* border-radius: 5px; */
+    box-shadow: 0 0 5px gray inset;
+}
+.content_box::-webkit-scrollbar-thumb,
+.sidebar_box::-webkit-scrollbar-thumb{
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    box-shadow: 0 0 4px gray inset;
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from '../components/Nav';
 import Sidebar from '../components/Sidebar';
 import '../Admin.css';
+import './Banner.css';
 
 function Banner() {
     return (
@@ -12,7 +13,7 @@ function Banner() {
                     <Sidebar />
                 </div>
                 <div className='content_box'>
-                    Banner
+                    <div className='Banner_container'></div>
                 </div>
             </div>
         </section>
