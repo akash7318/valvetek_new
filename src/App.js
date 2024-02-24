@@ -1,21 +1,18 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Nav from './components/nav/Nav';
-import Home from './Home';
-import About from './About';
-import Footer from './components/sections/Footer';
+import { BrowserRouter } from 'react-router-dom';
+import SiteLayout from './layouts/SiteLayout';
+import AdminLayout from './layouts/AdminLayout';
 
 function App() {
+
   return (
     <BrowserRouter>
-      <Nav></Nav>
-      <Routes>
-        <Route path='/' element={<Home />} />
-      </Routes>
-      <Routes>
-        <Route path='/about' element={<About />} />
-      </Routes>
-      <Footer></Footer>
+      {
+        window.location.href.includes('admin') || window.location.href.includes('login')
+          ?
+          <AdminLayout />
+          :
+          <SiteLayout />
+      }
     </ BrowserRouter>
   );
 }

@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.admin_container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    padding-top: 70px;
+}
+
+.sidebar_with_content {
+    display: flex;
+    /* height: calc(100% - 70px); */
+    height: 100%;
+}
+
+.sidebar_box {
+    width: 15%;
+    padding: 18px;
+    border-right: 1px solid rgb(225, 223, 223);
+    height: 100%;
+}
+
+.content_box {
+    width: 85%;
+    padding: 18px;
+    height: 100%;
+}
