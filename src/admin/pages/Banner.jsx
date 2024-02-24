@@ -3,7 +3,7 @@ import Nav from '../components/Nav';
 import Sidebar from '../components/Sidebar';
 import '../Admin.css';
 
-function Dashboard() {
+function Banner() {
     return (
         <section className='admin_container'>
             <Nav />
@@ -12,11 +12,11 @@ function Dashboard() {
                     <Sidebar />
                 </div>
                 <div className='content_box'>
-                    Dashboard
+                    Banner
                 </div>
             </div>
         </section>
     )
 }
 
-export default Dashboard
+export default Banner
