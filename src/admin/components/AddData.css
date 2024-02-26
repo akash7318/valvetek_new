@@ -2,7 +2,8 @@
     font-size: 16px;
     font-weight: 600;
     color: black;
-    padding: 18px 10px;
+    padding: 8px 10px;
+    display: inline-block;
 }
 .add_data input{
     border: 1px solid gray;
@@ -16,24 +17,18 @@
     outline: none;
     border-color: #0d6efd;
 }
-.data-row:first-child{
+.add_box:first-child{
     margin-top: 21px;
 }
-.data-row{
-    margin-bottom: 28px;
+.add_box{
+    display: flex;
+    margin-bottom: 18px;
 }
-.add_data table,
-.add_data tbody,
-.add_data tr{
+.add_data .Label-box{
+    max-width: 195px;
     width: 100%;
 }
-.add_data tr td{
-    padding: 21px 0;
-}
-.add_data tr td:first-child span{
-    width: fit-content;
-}
-.add_data tr td:first-child{
-    /* width: fit-content; */
-    max-width: 75px;
+.add_data .Input-box{
+    width: 100%;
+    max-width: calc(100% - 195px);
 }

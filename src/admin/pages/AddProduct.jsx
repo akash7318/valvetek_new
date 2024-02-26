@@ -17,12 +17,14 @@ function AddProduct() {
                     <div className='content_container'>
                         <BreadCrumb pageName="Add Products" link="/admin" btnName="Manage Products" />
                         <div className='add_data'>
-                            <table>
-                                <tbody>
-                                    <AddData Label="Product Name" inputType="text" Placeholder="Name" />
+                            <div className='row'>
+                                <div className='col-12'>
+                                    <AddData Width='w-50' Label="Product Name" inputType="text" Placeholder="Name" />
+                                </div>
+                                <div className='col-12'>
                                     <AddData Label="Product Image" inputType="file" />
-                                </tbody>
-                            </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

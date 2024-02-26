@@ -3,10 +3,10 @@ import './AddData.css';
 
 const AddData = (props) => {
     return (
-        <tr>
-            <td ><span className='Lavel'>{props.Label} :</span></td>
-            <td ><input type={props.inputType} placeholder={props.Placeholder} /></td>
-        </tr>
+        <div className='add_box'>
+            <div className='Label-box' ><span className='Lavel'>{props.Label} :</span></div>
+            <div className='Input-box'><input type={props.inputType} placeholder={props.Placeholder} /></div>
+        </div>
     )
 }
 
