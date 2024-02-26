@@ -10,6 +10,7 @@
     padding: 8px 22px;
     font-size: 15px;
     transition: all 350ms;
+    border-radius: 5px;
 }
 .add_data input:focus{
     outline: none;
@@ -20,4 +21,19 @@
 }
 .data-row{
     margin-bottom: 28px;
+}
+.add_data table,
+.add_data tbody,
+.add_data tr{
+    width: 100%;
+}
+.add_data tr td{
+    padding: 21px 0;
+}
+.add_data tr td:first-child span{
+    width: fit-content;
+}
+.add_data tr td:first-child{
+    /* width: fit-content; */
+    max-width: 75px;
 }

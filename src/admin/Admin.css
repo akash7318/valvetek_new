@@ -60,8 +60,8 @@
 }
 /* add data css */
 .add_data{
-    width: 100%;
-    margin: 30px 0;
+    width: calc(100% - 60px);
+    margin: 30px;
     padding: 21px ;
     font-size: 11px;
     color: gray;

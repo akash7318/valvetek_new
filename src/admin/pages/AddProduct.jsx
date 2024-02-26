@@ -15,11 +15,15 @@ function AddProduct() {
                 </div>
                 <div className='content_box'>
                     <div className='content_container'>
-                       <BreadCrumb pageName="Add Products" link="/admin" btnName="Manage Products" />
-                       <div className='add_data'>
-                        <AddData Label="Product Name" inputType="text" Placeholder="Name" />
-                        <AddData Label="Product Image" inputType="file"  />
-                       </div>
+                        <BreadCrumb pageName="Add Products" link="/admin" btnName="Manage Products" />
+                        <div className='add_data'>
+                            <table>
+                                <tbody>
+                                    <AddData Label="Product Name" inputType="text" Placeholder="Name" />
+                                    <AddData Label="Product Image" inputType="file" />
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
