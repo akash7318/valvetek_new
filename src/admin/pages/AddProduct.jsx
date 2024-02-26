@@ -2,6 +2,8 @@ import React from 'react';
 import Nav from '../components/Nav';
 import Sidebar from '../components/Sidebar';
 import '../Admin.css';
+import BreadCrumb from '../components/BreadCrumb';
+import AddData from '../components/AddData';
 
 function AddProduct() {
     return (
@@ -12,7 +14,13 @@ function AddProduct() {
                     <Sidebar />
                 </div>
                 <div className='content_box'>
-                    Add Product
+                    <div className='content_container'>
+                       <BreadCrumb pageName="Add Products" link="/admin" btnName="Manage Products" />
+                       <div className='add_data'>
+                        <AddData Label="Product Name" inputType="text" Placeholder="Name" />
+                        <AddData Label="Product Image" inputType="file"  />
+                       </div>
+                    </div>
                 </div>
             </div>
         </section>

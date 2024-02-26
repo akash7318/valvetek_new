@@ -1,0 +1,23 @@
+.add_data span{
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    padding: 18px 10px;
+}
+.add_data input{
+    border: 1px solid gray;
+    width: 100%;
+    padding: 8px 22px;
+    font-size: 15px;
+    transition: all 350ms;
+}
+.add_data input:focus{
+    outline: none;
+    border-color: #0d6efd;
+}
+.data-row:first-child{
+    margin-top: 21px;
+}
+.data-row{
+    margin-bottom: 28px;
+}

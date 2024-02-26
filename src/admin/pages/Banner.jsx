@@ -15,7 +15,7 @@ function Banner() {
                     <Sidebar />
                 </div>
                 <div className='content_box'>
-                    <div className='Banner_container'>
+                    <div className='content_container'>
                         <BreadCrumb pageName="Banner" link="/admin/add-banner" btnName="Add Banner" />
                         <TableCommon></TableCommon>
                     </div>
