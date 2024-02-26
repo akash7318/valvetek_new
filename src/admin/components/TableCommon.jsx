@@ -18,7 +18,7 @@ const TableCommon = () => {
       <tbody>
         <tr>
           <td>01</td>
-          <td><img className='img-one' src="../../../images/img/about-1.jpg" alt="" /></td>
+          <td><img className='img-one' src="../images/img/about-1.jpg" alt="" /></td>
           <td>Admin</td>
           <td>
             <SwitchBtn />
