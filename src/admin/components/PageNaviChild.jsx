@@ -8,7 +8,7 @@ const PageNaviChild = (props) => {
         <div className={props.addClass + ' page_navi_child'}>
             {
                 props.childs.map((value, index) =>
-                    <PageNavi pageName={value.name} link={value.link} addClass={value.addChildClass} />
+                    <PageNavi key={index} pageName={value.name} link={value.link} addClass={value.addChildClass} />
                 )
             }
         </div>

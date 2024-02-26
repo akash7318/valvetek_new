@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from '../components/Nav';
 import Sidebar from '../components/Sidebar';
+import BreadCrumb from '../components/BreadCrumb';
 import '../Admin.css';
 import './Banner.css';
 
@@ -13,7 +14,9 @@ function Banner() {
                     <Sidebar />
                 </div>
                 <div className='content_box'>
-                    <div className='Banner_container'></div>
+                    <div className='Banner_container'>
+                        <BreadCrumb pageName="Banner" link="/admin/add-banner" btnName="Add Banner" />
+                    </div>
                 </div>
             </div>
         </section>
