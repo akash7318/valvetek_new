@@ -6,7 +6,7 @@ import PageNavi from './PageNavi';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 import InventoryIcon from '@mui/icons-material/Inventory';
-import PageNaviChild from './PageNaviChild';
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 
 function Sidebar() {
     const location = useLocation();
@@ -17,6 +17,13 @@ function Sidebar() {
             link: '/admin/dashboard',
             hasChildren: false,
             addClass: location.pathname === "/admin/dashboard" ? "active" : null
+        },
+        {
+            name: 'Site Information',
+            icon: <SettingsApplicationsIcon />,
+            link: '/admin/site-info',
+            hasChildren: false,
+            addClass: location.pathname === "/admin/site-info" ? "active" : null
         },
         {
             name: 'Banner',
@@ -61,7 +68,7 @@ function Sidebar() {
                     />
                 )
             }
-            
+
         </div>
     )
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SwitchBtn from "./SwitchBtn";
 import './TableCommon.css';
 
-const TableCommon = () => {
+const TableCommon = (props) => {
 
   return (
     <table className='table_common'>
@@ -18,7 +18,7 @@ const TableCommon = () => {
       <tbody>
         <tr>
           <td>01</td>
-          <td><img className='img-one' src="../images/img/about-1.jpg" alt="" /></td>
+          <td><img className='img-one' src="../../../images/img/about-1.jpg" alt="" /></td>
           <td>Admin</td>
           <td>
             <SwitchBtn />
