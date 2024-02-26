@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from '../components/Nav';
 import Sidebar from '../components/Sidebar';
 import '../Admin.css';
+import Box from '../components/Box';
 
 function Dashboard() {
     return (
@@ -12,7 +13,15 @@ function Dashboard() {
                     <Sidebar />
                 </div>
                 <div className='content_box'>
-                    Dashboard
+                    <div className='row'>
+                        <Box />
+                        <Box />
+                        <Box />
+                        <Box />
+                        <Box />
+                        <Box />
+                        <Box />
+                    </div>
                 </div>
             </div>
         </section>
