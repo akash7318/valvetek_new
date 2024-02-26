@@ -1,5 +1,4 @@
 import React from "react";
-import SwitchBtn from "./SwitchBtn";
 import './TableCommon.css';
 
 const TableCommon = (props) => {
