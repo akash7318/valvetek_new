@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Sidebar from '../components/Sidebar';
 import BreadCrumb from '../components/BreadCrumb';
@@ -21,17 +22,23 @@ function Banner() {
     const td = [
         [
             '1',
-            'Image',
+            <img className='img-one' src="../images/img/about-1.jpg" />,
             'Name',
-            'Status',
-            'Action',
+            <SwitchBtn />,
+            <div className='d-flex gap-2 justify-content-center'>
+                <Link to="/admin/banner/data" className='btn btn-primary'>Edit</Link>
+                <button className='btn btn-danger'>Delete</button>
+            </div>
         ],
         [
             '2',
-            'Image',
+            <img className='img-one' src="../images/img/about-1.jpg" />,
             'Name',
-            'Status',
-            'Action',
+            <SwitchBtn />,
+            <div className='d-flex gap-2 justify-content-center'>
+                <Link to="/admin/banner/data" className='btn btn-primary'>Edit</Link>
+                <button className='btn btn-danger'>Delete</button>
+            </div>
         ]
     ];
 
