@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar';
 import BreadCrumb from '../components/BreadCrumb';
 import '../Admin.css';
 import './Banner.css';
+import TableCommon from '../components/TableCommon';
 
 function Banner() {
     return (
@@ -16,6 +17,7 @@ function Banner() {
                 <div className='content_box'>
                     <div className='Banner_container'>
                         <BreadCrumb pageName="Banner" link="/admin/add-banner" btnName="Add Banner" />
+                        <TableCommon></TableCommon>
                     </div>
                 </div>
             </div>
