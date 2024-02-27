@@ -6,7 +6,7 @@ const bannerSchema = mongoose.Schema({
     textField2: String,
     description: String,
     img: String,
-    isActive: String,
+    isActive: Boolean,
 });
 
 module.exports = mongoose.model('banners', bannerSchema);
