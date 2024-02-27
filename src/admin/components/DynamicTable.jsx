@@ -14,15 +14,21 @@ function EachData(props) {
             </thead>
             <tbody>
                 {
-                    props.tdData.map((value, index) =>
-                        <tr key={index}>
-                            {
-                                value.map((item, key) =>
-                                    <td key={key}>{item}</td>
-                                )
-                            }
+                    props.tdData.length > 0
+                        ?
+                        props.tdData.map((value, index) =>
+                            <tr key={index}>
+                                {
+                                    value.map((item, key) =>
+                                        <td key={key}>{item}</td>
+                                    )
+                                }
+                            </tr>
+                        )
+                        :
+                        <tr>
+                            <td colSpan={props.thData.length} className='fs-5'>No data found</td>
                         </tr>
-                    )
                 }
             </tbody>
         </>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Sidebar from '../components/Sidebar';
 import '../Admin.css';
@@ -8,17 +8,39 @@ import AddData from '../components/AddData';
 import AddDataEditor from '../components/AddDataEditor';
 import Tinymce from '../components/Tinymce';
 
-const AddBanner = () => {
+const BannerData = () => {
     const navigate = useNavigate();
+    const params = useParams();
+
     const [name, setName] = useState('');
     const [textField1, setTextField1] = useState('');
     const [textField2, setTextField2] = useState('');
     const [file, setFile] = useState('');
     const [description, setDescription] = useState('');
 
+    const [defaultDescription, setDefaultDescription] = useState('');
+
     const setContent = (content) => {
         setDescription(content);
     }
+
+    const getBanner = async (id) => {
+        let result = await fetch("http://localhost:5000/banner/" + id)
+        result = await result.json();
+
+        if (result.status) {
+            setName(result.banner.name);
+            setTextField1(result.banner.textField1);
+            setTextField2(result.banner.textField2);
+            setDefaultDescription(result.banner.description);
+        }
+    }
+
+    useEffect(() => {
+        if (params._id) {
+            getBanner(params._id);
+        }
+    }, []);
 
     const submitHandler = async (event) => {
         event.preventDefault();
@@ -29,8 +51,11 @@ const AddBanner = () => {
         data.append("textField2", textField2);
         data.append("file", file);
         data.append("description", description);
+        if (params._id) {
+            data.append("id", params._id);
+        }
 
-        const url = "http://localhost:5000/createBanner";
+        const url = "http://localhost:5000/saveBanner";
 
         let result = await fetch(
             url,
@@ -41,8 +66,7 @@ const AddBanner = () => {
         );
 
         result = await result.json();
-        console.log(result);
-        if (result) {
+        if (result.status) {
             navigate('/admin/banner');
         }
     }
@@ -55,23 +79,23 @@ const AddBanner = () => {
                 </div>
                 <div className='content_box'>
                     <div className='content_container'>
-                        <BreadCrumb pageName="Add Products" link="/admin" btnName="Manage Banners" />
+                        <BreadCrumb pageName="Add Products" link="/admin/banner" btnName="Manage Banners" />
                         <form onSubmit={submitHandler} className='add_data'>
                             <div className='row'>
                                 <div className='col-12'>
-                                    <AddData Width='w-50' changeFunction={setName} Label="Banner Name" inputType="text" Placeholder="Name" />
+                                    <AddData Width='w-50' changeFunction={setName} Label="Banner Name" inputType="text" Placeholder="Name" value={name} />
                                 </div>
                                 <div className='col-12'>
-                                    <AddData Width='w-50' changeFunction={setTextField1} Label="Text Fields One" inputType="text" Placeholder="Text" />
+                                    <AddData Width='w-50' changeFunction={setTextField1} Label="Text Fields One" inputType="text" Placeholder="Text" value={textField1} />
                                 </div>
                                 <div className='col-12'>
-                                    <AddData Width='w-50' changeFunction={setTextField2} Label="Text Fields Two" inputType="text" Placeholder="Text" />
+                                    <AddData Width='w-50' changeFunction={setTextField2} Label="Text Fields Two" inputType="text" Placeholder="Text" value={textField2} />
                                 </div>
                                 <div className='col-12'>
                                     <AddData Label="Banner Image" changeFunction={setFile} inputType="file" />
                                 </div>
                                 <div className='col-12'>
-                                    <AddDataEditor Label="Banner Description" Editor={<Tinymce value="" description={setContent} />} />
+                                    <AddDataEditor Label="Banner Description" Editor={<Tinymce value={defaultDescription} description={setContent} />} />
                                     <div className='row justify-content-end'>
                                         <button className='btn btn-primary mt-2 float-right w-fit col-auto mx-2'>Save Data</button>
                                     </div>
@@ -85,4 +109,4 @@ const AddBanner = () => {
     )
 }
 
-export default AddBanner
+export default BannerData

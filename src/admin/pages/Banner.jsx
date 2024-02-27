@@ -8,10 +8,16 @@ import './Banner.css';
 import SwitchBtn from '../components/SwitchBtn';
 import TableCommon from '../components/TableCommon';
 import DynamicTable from '../components/DynamicTable';
+import DeleteBtn from '../components/DeleteBtn';
 
 function Banner() {
 
     const [banners, setBanners] = useState([]);
+
+    const render = () => {
+        getBanners();
+    }
+
     useEffect(() => {
         getBanners();
     }, []);
@@ -30,28 +36,23 @@ function Banner() {
         { name: 'Action' }
     ];
 
-    const td = [
-        [
-            '1',
-            <img className='img-one' src="../images/img/about-1.jpg" />,
-            'Name',
-            <SwitchBtn />,
-            <div className='d-flex gap-2 justify-content-center'>
-                <Link to="/admin/banner/data" className='btn btn-primary'>Edit</Link>
-                <button className='btn btn-danger'>Delete</button>
-            </div>
-        ],
-        [
-            '2',
-            <img className='img-one' src="../images/img/about-1.jpg" />,
-            'Name',
-            <SwitchBtn />,
-            <div className='d-flex gap-2 justify-content-center'>
-                <Link to="/admin/banner/data" className='btn btn-primary'>Edit</Link>
-                <button className='btn btn-danger'>Delete</button>
-            </div>
-        ]
-    ];
+    let td = [];
+    if (banners.status) {
+        banners.result.map((value, index) =>
+            td.push(
+                [
+                    index + 1,
+                    <img className='img-one' src={"../images/" + value.img} />,
+                    value.name,
+                    <SwitchBtn checked={value.isActive} url={"http://localhost:5000/changeActiveBanner/" + value._id} />,
+                    <div className='d-flex gap-2 justify-content-center'>
+                        <Link to={"/admin/banner/data/" + value._id} className='btn btn-primary'>Edit</Link>
+                        <DeleteBtn deleteAndRender={render} url={"http://localhost:5000/deleteBanner/" + value._id} />
+                    </div>
+                ]
+            )
+        )
+    }
 
     return (
         <section className='admin_container'>
@@ -62,7 +63,7 @@ function Banner() {
                 </div>
                 <div className='content_box'>
                     <div className='content_container'>
-                        <BreadCrumb pageName="Banner" link="/admin/add-banner" btnName="Add Banner" />
+                        <BreadCrumb pageName="Banner" link="/admin/banner/data" btnName="Add Banner" />
                         <TableCommon tblData={<DynamicTable thData={th} tdData={td} />} />
                     </div>
                 </div>
