@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Sidebar from '../components/Sidebar';
 import '../Admin.css';
@@ -8,40 +9,43 @@ import AddDataEditor from '../components/AddDataEditor';
 import Tinymce from '../components/Tinymce';
 
 const AddBanner = () => {
+    const navigate = useNavigate();
     const [name, setName] = useState('');
-	const [textField1, setTextField1] = useState('');
-	const [textField2, setTextField2] = useState('');
-	// const [file, setFile] = useState('');
-	const [description, setDescription] = useState('');
+    const [textField1, setTextField1] = useState('');
+    const [textField2, setTextField2] = useState('');
+    const [file, setFile] = useState('');
+    const [description, setDescription] = useState('');
 
-	const setContent = (content) => {
-		setDescription(content);
-	}
-    
-	const submitHandler = async (event) => {
-		event.preventDefault();
+    const setContent = (content) => {
+        setDescription(content);
+    }
 
-		const data = new FormData();
-		data.append("name", name);
-		data.append("textField1", textField1);
-		data.append("textField2", textField2);
-		// data.append("file", file);
-		data.append("description", description);
+    const submitHandler = async (event) => {
+        event.preventDefault();
 
-		const url = "http://localhost:5000/createBanner";
+        const data = new FormData();
+        data.append("name", name);
+        data.append("textField1", textField1);
+        data.append("textField2", textField2);
+        data.append("file", file);
+        data.append("description", description);
 
-		let result = await fetch(
-			url,
-			{
-				method: "POST",
-				body: data,
-			}
-		);
+        const url = "http://localhost:5000/createBanner";
 
-		result = await result.json();
+        let result = await fetch(
+            url,
+            {
+                method: "POST",
+                body: data,
+            }
+        );
 
-		console.log(result);
-	}
+        result = await result.json();
+        console.log(result);
+        if (result) {
+            navigate('/admin/banner');
+        }
+    }
     return (
         <section className='admin_container'>
             <Nav />
@@ -64,12 +68,12 @@ const AddBanner = () => {
                                     <AddData Width='w-50' changeFunction={setTextField2} Label="Text Fields Two" inputType="text" Placeholder="Text" />
                                 </div>
                                 <div className='col-12'>
-                                    <AddData Label="Banner Image" inputType="file" />
+                                    <AddData Label="Banner Image" changeFunction={setFile} inputType="file" />
                                 </div>
                                 <div className='col-12'>
                                     <AddDataEditor Label="Banner Description" Editor={<Tinymce value="" description={setContent} />} />
                                     <div className='row justify-content-end'>
-                                        <button  className='btn btn-primary mt-2 float-right w-fit col-auto mx-2'>Save Data</button>
+                                        <button className='btn btn-primary mt-2 float-right w-fit col-auto mx-2'>Save Data</button>
                                     </div>
                                 </div>
                             </div>

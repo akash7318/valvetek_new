@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
 import Sidebar from '../components/Sidebar';
@@ -10,6 +10,17 @@ import TableCommon from '../components/TableCommon';
 import DynamicTable from '../components/DynamicTable';
 
 function Banner() {
+
+    const [banners, setBanners] = useState([]);
+    useEffect(() => {
+        getBanners();
+    }, []);
+
+    const getBanners = async () => {
+        let result = await fetch('http://localhost:5000/banners');
+        result = await result.json();
+        setBanners(result);
+    }
 
     const th = [
         { name: '#' },
