@@ -69,3 +69,29 @@
     border-radius: 8px;
     box-shadow: 0px 0px 7px rgb(203, 202, 202);
 }
+.g-analytic{
+    display: flex;
+}
+.g-analytic label{
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    padding: 8px 10px;
+    display: inline-block;
+    width: 195px;
+}
+.g-analytic textarea{
+    height: 100px;
+    width: 100%;  
+    max-width: calc(100% - 195px);
+    border: 1px solid gray;
+    width: 100%;
+    padding: 8px 22px;
+    font-size: 15px;
+    transition: all 350ms;
+    border-radius: 5px;
+}
+.g-analytic textarea:focus{
+    outline: none;
+    border-color: #0d6efd;
+}

@@ -22,7 +22,7 @@
 }
 .add_box{
     display: flex;
-    margin-bottom: 18px;
+    margin-bottom: 12px;
 }
 .add_data .Label-box{
     max-width: 195px;

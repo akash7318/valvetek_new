@@ -5,6 +5,7 @@ require('./db/config');
 
 const User = require('./db/User');
 const Banner = require('./db/Banner');
+const SiteInfo = require('./db/SiteInfo');
 
 const app = express();
 app.use(express.json());
@@ -29,6 +30,13 @@ app.post('/login', async (req, res) => {
         res.send({ status: false });
     }
 });
+
+// app.post('/siteinfo', upload, async (req, res) => {
+//     req.body.img = req.file.filename;
+//     const siteinfo = new SiteInfo(req.body);
+//     let result = await siteinfo.save();
+//     res.send(result);
+// });
 
 app.post('/createBanner', upload, async (req, res) => {
     req.body.img = req.file.filename;
