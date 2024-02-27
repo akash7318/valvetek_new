@@ -33,6 +33,7 @@ function SiteInfo() {
     const setContent = (content) => {
         setfooterText(content);
     }
+    
     const submitHandler = async (event) => {
         event.preventDefault();
 
@@ -146,7 +147,7 @@ function SiteInfo() {
                             </div>
                             <div className='row mt-4'>
                                 <div className='col-12'><h5 className='px-2 text-primary'>Google Analytics</h5></div>
-                                <div className='col-12 g-analytic'>
+                                <div className='col-12 textarea-box'>
                                     <label htmlFor="">Google Analytic :</label>
                                     <textarea name="" onChange={(e) => setGoogleAnalytic(e.target.value)} cols="30" rows="10" placeholder='Code'></textarea>
                                 </div>
