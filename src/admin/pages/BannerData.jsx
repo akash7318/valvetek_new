@@ -32,6 +32,7 @@ const BannerData = () => {
             setName(result.banner.name);
             setTextField1(result.banner.textField1);
             setTextField2(result.banner.textField2);
+            setDescription(result.banner.description);
             setDefaultDescription(result.banner.description);
         }
     }
@@ -83,13 +84,13 @@ const BannerData = () => {
                         <form onSubmit={submitHandler} className='add_data'>
                             <div className='row'>
                                 <div className='col-12'>
-                                    <AddData Width='w-50' changeFunction={setName} Label="Banner Name" inputType="text" Placeholder="Name" value={name} />
+                                    <AddData changeFunction={setName} Label="Banner Name" inputType="text" Placeholder="Name" value={name} />
                                 </div>
                                 <div className='col-12'>
-                                    <AddData Width='w-50' changeFunction={setTextField1} Label="Text Fields One" inputType="text" Placeholder="Text" value={textField1} />
+                                    <AddData changeFunction={setTextField1} Label="Text Fields One" inputType="text" Placeholder="Text" value={textField1} />
                                 </div>
                                 <div className='col-12'>
-                                    <AddData Width='w-50' changeFunction={setTextField2} Label="Text Fields Two" inputType="text" Placeholder="Text" value={textField2} />
+                                    <AddData changeFunction={setTextField2} Label="Text Fields Two" inputType="text" Placeholder="Text" value={textField2} />
                                 </div>
                                 <div className='col-12'>
                                     <AddData Label="Banner Image" changeFunction={setFile} inputType="file" />

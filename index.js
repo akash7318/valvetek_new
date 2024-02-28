@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
+const Path = require('path');
+const fileUpload = require('express-fileupload');
+
 require('./db/config');
 
 const User = require('./db/User');
@@ -10,6 +13,7 @@ const SiteInfo = require('./db/SiteInfo');
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(fileUpload());
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -31,11 +35,26 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.post('/createBanner', upload, async (req, res) => {
-    req.body.img = req.file.filename;
-    req.body.isActive = true;
-    const banner = new Banner(req.body);
-    let result = await banner.save();
+app.get('/siteInfo', async (req, res) => {
+    const siteInfo = await SiteInfo.findOne();
+    res.send({ status: true, siteInfo: siteInfo });
+});
+
+const uploadFile = (file, destination) => {
+    const ext = Path.extname(file.name);
+    const name = file.name.split('.')[0];
+    const fileName = name + "-" + Date.now() + ext;
+    file.mv(__dirname + destination + fileName);
+    return fileName;
+}
+
+app.post('/updateSiteInfo', async (req, res) => {
+    const siteInfo = await SiteInfo.findOne();
+    const logo = (res.files && res.files.logo) ? uploadFile(req.files.logo, "/public/images/") : siteInfo.logo;
+    const favicon = (res.files && res.files.favicon) ? uploadFile(req.files.favicon, "/public/images/") : siteInfo.favicon;
+    req.body.logo = logo;
+    req.body.favicon = favicon;
+    const result = await SiteInfo.updateOne({ $set: req.body });
     res.send(result);
 });
 
@@ -53,13 +72,13 @@ app.get('/banner/:_id', async (req, res) => {
     }
 });
 
-app.post('/saveBanner', upload, async (req, res) => {
-    req.body.img = req.file ? req.file.filename : null;
+app.post('/saveBanner', async (req, res) => {
+    req.body.img = (req.files && req.files.file) ? uploadFile(req.files.file, "/public/images/banners/") : null;
     req.body.isActive = true;
     let banner = [];
     if (req.body.id) {
         let result = await Banner.findOne({ _id: req.body.id });
-        req.body.img = req.file ? req.file.filename : result.img;
+        req.body.img === null ? result.img : null;
         banner = await Banner.updateOne(
             { '_id': req.body.id },
             {
@@ -70,7 +89,7 @@ app.post('/saveBanner', upload, async (req, res) => {
         banner = new Banner(req.body);
         banner = await banner.save();
     }
-    res.send({ status: true, banner: banner });
+    res.send({ status: true, banner: req.file });
 });
 
 app.delete('/deleteBanner/:_id', async (req, res) => {

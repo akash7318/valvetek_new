@@ -42,7 +42,7 @@ function Banner() {
             td.push(
                 [
                     index + 1,
-                    <img className='img-one' src={"../images/" + value.img} />,
+                    <img className='img-one' src={"../images/banners/" + value.img} />,
                     value.name,
                     <SwitchBtn checked={value.isActive} url={"http://localhost:5000/changeActiveBanner/" + value._id} />,
                     <div className='d-flex gap-2 justify-content-center'>
