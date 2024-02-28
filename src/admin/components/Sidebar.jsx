@@ -45,9 +45,9 @@ function Sidebar() {
                     addChildClass: location.pathname === "/admin/all-product" ? "active" : null
                 },
                 {
-                    name: 'Add Product',
-                    link: '/admin/add-product',
-                    addChildClass: location.pathname === "/admin/add-product" ? "active" : null
+                    name: 'Product Data',
+                    link: '/admin/product-data',
+                    addChildClass: location.pathname === "/admin/product-data" ? "active" : null
                 }
             ]
         }

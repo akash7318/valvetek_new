@@ -7,7 +7,7 @@ import BannerData from '../admin/pages/BannerData';
 
 import Login from '../Login';
 import AllProduct from '../admin/pages/AllProduct';
-import AddProduct from '../admin/pages/AddProduct';
+import ProductData from '../admin/pages/ProductData';
 
 function SiteLayout() {
     return (
@@ -18,7 +18,7 @@ function SiteLayout() {
             <Route path='/admin/banner/data' element={<BannerData />} />
             <Route path='/admin/banner/data/:_id' element={<BannerData />} />
             <Route path='/admin/all-product' element={<AllProduct />} />
-            <Route path='/admin/add-product' element={<AddProduct />} />
+            <Route path='/admin/product-data' element={<ProductData />} />
             <Route path='/login' element={<Login />} />
         </Routes>
     )
