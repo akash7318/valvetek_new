@@ -33,7 +33,6 @@ function SiteInfo() {
     const setContent = (content) => {
         setFooterText(content);
     }
-<<<<<<< HEAD
 
     useEffect(() => {
         getSiteInfo();
@@ -65,9 +64,6 @@ function SiteInfo() {
         }
     }
 
-=======
-    
->>>>>>> fe7b45972afe64ccdfda91abc251de355a13014f
     const submitHandler = async (event) => {
         event.preventDefault();
 
