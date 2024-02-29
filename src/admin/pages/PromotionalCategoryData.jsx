@@ -8,12 +8,11 @@ import AddData from '../components/AddData';
 import AddDataEditor from '../components/AddDataEditor';
 import Tinymce from '../components/Tinymce';
 
-function ProductData() {
+function PromotionalCategoryData() {
     const navigate = useNavigate();
     const params = useParams();
 
     const [name, setName] = useState('');
-    const [img, setImg] = useState('');
     const [shortDescription, setShortDescription] = useState('');
     const [description, setDescription] = useState('');
     const [defaultDescription, setDefaultDescription] = useState('');
@@ -31,26 +30,26 @@ function ProductData() {
     const [metaDescription, setMetaDescription] = useState('');
     const [metaKeywords, setMetaKeywords] = useState('');
 
-    const getProduct = async (id) => {
-        let result = await fetch("http://localhost:5000/product/" + id)
+    const getPromotionalCategory = async (id) => {
+        let result = await fetch("http://localhost:5000/promotionalCategory/" + id)
         result = await result.json();
 
         if (result.status) {
-            setName(result.product.name);
-            setShortDescription(result.product.shortDescription);
-            setDescription(result.product.description);
-            setDefaultDescription(result.product.description);
-            setExtraDescription(result.product.extraDescription);
-            setDefaultExtraDescription(result.product.extraDescription);
-            setMetaTitle(result.product.metaTitle);
-            setMetaDescription(result.product.metaDescription);
-            setMetaKeywords(result.product.metaKeywords);
+            setName(result.promotionalCategory.name);
+            setShortDescription(result.promotionalCategory.shortDescription);
+            setDescription(result.promotionalCategory.description);
+            setDefaultDescription(result.promotionalCategory.description);
+            setExtraDescription(result.promotionalCategory.extraDescription);
+            setDefaultExtraDescription(result.promotionalCategory.extraDescription);
+            setMetaTitle(result.promotionalCategory.metaTitle);
+            setMetaDescription(result.promotionalCategory.metaDescription);
+            setMetaKeywords(result.promotionalCategory.metaKeywords);
         }
     }
 
     useEffect(() => {
         if (params._id) {
-            getProduct(params._id);
+            getPromotionalCategory(params._id);
         }
     }, []);
 
@@ -64,7 +63,7 @@ function ProductData() {
         }
 
         let result = await fetch(
-            "http://localhost:5000/saveProduct",
+            "http://localhost:5000/savePromotionalCategory",
             {
                 method: "POST",
                 body: data
@@ -73,7 +72,7 @@ function ProductData() {
         result = await result.json();
 
         if (result.status) {
-            navigate('/admin/product');
+            navigate('/admin/promotionalCategory');
         }
     }
 
@@ -86,14 +85,11 @@ function ProductData() {
                 </div>
                 <div className='content_box'>
                     <div className='content_container'>
-                        <BreadCrumb pageName="Add Product" link="/admin/product" btnName="Manage Products" />
+                        <BreadCrumb pageName="Add Product" link="/admin/promotionalCategory" btnName="Manage Category" />
                         <form onSubmit={submitHandler} className='add_data'>
                             <div className='row'>
                                 <div className='col-12'>
                                     <AddData changeFunction={setName} value={name} Label="Product Name" inputType="text" Placeholder="Name" name="name" />
-                                </div>
-                                <div className='col-12'>
-                                    <AddData changeFunction={setImg} Label="Product Image" name="img" inputType="file" />
                                 </div>
                                 <div className='col-12 textarea-box'>
                                     <label htmlFor="">Short Description :</label>
@@ -135,4 +131,4 @@ function ProductData() {
     )
 }
 
-export default ProductData
+export default PromotionalCategoryData

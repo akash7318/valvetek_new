@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect } from 'react';
 import './Why_choose_us.css'
 import CountUp from 'react-countup';
 import Section_title from '../Section_title';
@@ -15,12 +15,12 @@ const Why_choose_us = () => {
   // }
 
   const boxVariantTwo = {
-    visible: { opacity: 1, scale: 1, translateX: 0, transition: {duration: 0.4} },
-    hidden: { opacity: 0.25, scale: 0.65 , translateX: -100},
+    visible: { opacity: 1, scale: 1, translateX: 0, transition: { duration: 0.4 } },
+    hidden: { opacity: 0.25, scale: 0.65, translateX: -100 },
   }
   const boxVariantThree = {
-    visible: { opacity: 1, scale: 1, translateX: 0, transition: {duration: 0.4} },
-    hidden: { opacity: 0.25, scale: 0.65 , translateX: 100},
+    visible: { opacity: 1, scale: 1, translateX: 0, transition: { duration: 0.4 } },
+    hidden: { opacity: 0.25, scale: 0.65, translateX: 100 },
   }
 
   const control = useAnimation()
@@ -43,7 +43,7 @@ const Why_choose_us = () => {
         <div className='row m-b40'>
           <div className='col-lg-4 col-md-6 m-b30'>
             <div
-             className='countup_box'>
+              className='countup_box'>
               <div className='icon-box-bg'></div>
               <div className='icon-box row'>
                 <div className='cout-icon col-4'>
@@ -59,8 +59,8 @@ const Why_choose_us = () => {
             </div>
           </div>
           <div className='col-lg-4 col-md-6 m-b30'>
-            <div 
-             className='countup_box'>
+            <div
+              className='countup_box'>
               <div className='icon-box-bg'></div>
               <div className='icon-box row'>
                 <div className='cout-icon col-4'>
@@ -77,7 +77,7 @@ const Why_choose_us = () => {
           </div>
           <div className='col-lg-4 col-md-6 m-b30'>
             <div
-             className='countup_box'>
+              className='countup_box'>
               <div className='icon-box-bg'></div>
               <div className='icon-box row'>
                 <div className='cout-icon col-4'>
@@ -95,12 +95,12 @@ const Why_choose_us = () => {
         </div>
 
         <div className='row'>
-          <motion.div 
-              ref={ref}
-              variants={boxVariantTwo}
-              initial="hidden"
-              animate={control}
-           className='col-lg-5'>
+          <motion.div
+            ref={ref}
+            variants={boxVariantTwo}
+            initial="hidden"
+            animate={control}
+            className='col-lg-5'>
             <div className='why-left-img'>
               <img src="./images/img/welcome.png" alt="" />
               <div className='color-layer'><span>Why Us</span></div>

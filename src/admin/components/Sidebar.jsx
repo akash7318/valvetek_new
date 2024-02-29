@@ -7,6 +7,9 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+import BusinessIcon from '@mui/icons-material/Business';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+// import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 
 function Sidebar() {
     const location = useLocation();
@@ -35,22 +38,43 @@ function Sidebar() {
         {
             name: 'Product',
             icon: <InventoryIcon />,
-            link: '#',
-            hasChild: true,
-            addClass: location.pathname.includes('product') ? "active" : null,
-            childs: [
-                {
-                    name: 'All Product',
-                    link: '/admin/all-product',
-                    addChildClass: location.pathname === "/admin/all-product" ? "active" : null
-                },
-                {
-                    name: 'Product Data',
-                    link: '/admin/product-data',
-                    addChildClass: location.pathname === "/admin/product-data" ? "active" : null
-                }
-            ]
-        }
+            link: '/admin/product',
+            hasChildren: false,
+            addClass: location.pathname === "/admin/product" ? "active" : null
+        },
+        {
+            name: 'Promotional Category',
+            icon: <BusinessIcon />,
+            link: '/admin/promotionalCategory',
+            hasChildren: false,
+            addClass: location.pathname === "/admin/promotionalCategory" ? "active" : null
+        },
+        {
+            name: 'Keyword In City',
+            icon: <ApartmentIcon />,
+            link: '/admin/keywordInCity',
+            hasChildren: false,
+            addClass: location.pathname === "/admin/keywordInCity" ? "active" : null
+        },
+        // {
+        //     name: 'Product',
+        //     icon: <InventoryIcon />,
+        //     link: '#',
+        //     hasChild: true,
+        //     addClass: location.pathname.includes('product') ? "active" : null,
+        //     childs: [
+        //         {
+        //             name: 'All Product',
+        //             link: '/admin/all-product',
+        //             addChildClass: location.pathname === "/admin/all-product" ? "active" : null
+        //         },
+        //         {
+        //             name: 'Product Data',
+        //             link: '/admin/product-data',
+        //             addChildClass: location.pathname === "/admin/product-data" ? "active" : null
+        //         }
+        //     ]
+        // }
     ];
 
     return (

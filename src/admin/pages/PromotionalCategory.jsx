@@ -4,50 +4,47 @@ import Nav from '../components/Nav';
 import Sidebar from '../components/Sidebar';
 import BreadCrumb from '../components/BreadCrumb';
 import '../Admin.css';
-import './Banner.css';
 import SwitchBtn from '../components/SwitchBtn';
 import TableCommon from '../components/TableCommon';
 import DynamicTable from '../components/DynamicTable';
 import DeleteBtn from '../components/DeleteBtn';
 
-function Banner() {
+function PromotionalCategory() {
 
-    const [banners, setBanners] = useState([]);
+    const [promotionalCategories, setPromotionalCategory] = useState([]);
 
     const render = () => {
-        getBanners();
+        getPromotionalCategory();
     }
 
     useEffect(() => {
-        getBanners();
+        getPromotionalCategory();
     }, []);
 
-    const getBanners = async () => {
-        let result = await fetch('http://localhost:5000/banners');
+    const getPromotionalCategory = async () => {
+        let result = await fetch('http://localhost:5000/promotionalCategories');
         result = await result.json();
-        setBanners(result);
+        setPromotionalCategory(result);
     }
 
     const th = [
         { name: '#' },
-        { name: 'Image' },
         { name: 'Name' },
         { name: 'Status' },
         { name: 'Action' }
     ];
 
     let td = [];
-    if (banners.status) {
-        banners.result.map((value, index) =>
+    if (promotionalCategories.status) {
+        promotionalCategories.result.map((value, index) =>
             td.push(
                 [
                     index + 1,
-                    <img className='img-one' src={"../images/banners/" + value.img} />,
                     value.name,
-                    <SwitchBtn checked={value.isActive} url={"http://localhost:5000/changeActiveBanner/" + value._id} />,
+                    <SwitchBtn checked={value.isActive} url={"http://localhost:5000/changeActivePromotionalCategory/" + value._id} />,
                     <div className='d-flex gap-2 justify-content-center'>
-                        <Link to={"/admin/banner/data/" + value._id} className='btn btn-primary'>Edit</Link>
-                        <DeleteBtn deleteAndRender={render} url={"http://localhost:5000/deleteBanner/" + value._id} />
+                        <Link to={"/admin/promotionalCategory/data/" + value._id} className='btn btn-primary'>Edit</Link>
+                        <DeleteBtn deleteAndRender={render} url={"http://localhost:5000/deletePromotionalCategory/" + value._id} />
                     </div>
                 ]
             )
@@ -63,7 +60,7 @@ function Banner() {
                 </div>
                 <div className='content_box'>
                     <div className='content_container'>
-                        <BreadCrumb pageName="Banners" link="/admin/banner/data" btnName="Add Banner" />
+                        <BreadCrumb pageName="Promotional Categories" link="/admin/promotionalCategory/data" btnName="Add Category" />
                         <TableCommon tblData={<DynamicTable thData={th} tdData={td} />} />
                     </div>
                 </div>
@@ -72,4 +69,4 @@ function Banner() {
     )
 }
 
-export default Banner
+export default PromotionalCategory

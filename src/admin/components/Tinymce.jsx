@@ -22,6 +22,7 @@ export default function Tinymce(props) {
                     ],
                     ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
                 }}
+                textareaName={props.name}
                 initialValue={props.value}
                 onEditorChange={handleUpdate}
             />

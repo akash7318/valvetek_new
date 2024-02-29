@@ -14,6 +14,7 @@ const AddData = (props) => {
             </div>
             <div className='Input-box'>
                 <input
+                    name={props.name}
                     value={props.value}
                     onChange={
                         props.inputType === 'file'

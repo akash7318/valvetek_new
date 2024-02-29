@@ -4,28 +4,27 @@ import Nav from '../components/Nav';
 import Sidebar from '../components/Sidebar';
 import BreadCrumb from '../components/BreadCrumb';
 import '../Admin.css';
-import './Banner.css';
 import SwitchBtn from '../components/SwitchBtn';
 import TableCommon from '../components/TableCommon';
 import DynamicTable from '../components/DynamicTable';
 import DeleteBtn from '../components/DeleteBtn';
 
-function Banner() {
+function Product() {
 
-    const [banners, setBanners] = useState([]);
+    const [products, setProducts] = useState([]);
 
     const render = () => {
-        getBanners();
+        getProducts();
     }
 
     useEffect(() => {
-        getBanners();
+        getProducts();
     }, []);
 
-    const getBanners = async () => {
-        let result = await fetch('http://localhost:5000/banners');
+    const getProducts = async () => {
+        let result = await fetch('http://localhost:5000/products');
         result = await result.json();
-        setBanners(result);
+        setProducts(result);
     }
 
     const th = [
@@ -37,17 +36,17 @@ function Banner() {
     ];
 
     let td = [];
-    if (banners.status) {
-        banners.result.map((value, index) =>
+    if (products.status) {
+        products.result.map((value, index) =>
             td.push(
                 [
                     index + 1,
-                    <img className='img-one' src={"../images/banners/" + value.img} />,
+                    <img className='img-one' src={"../images/products/" + value.img} />,
                     value.name,
-                    <SwitchBtn checked={value.isActive} url={"http://localhost:5000/changeActiveBanner/" + value._id} />,
+                    <SwitchBtn checked={value.isActive} url={"http://localhost:5000/changeActiveProduct/" + value._id} />,
                     <div className='d-flex gap-2 justify-content-center'>
-                        <Link to={"/admin/banner/data/" + value._id} className='btn btn-primary'>Edit</Link>
-                        <DeleteBtn deleteAndRender={render} url={"http://localhost:5000/deleteBanner/" + value._id} />
+                        <Link to={"/admin/product/data/" + value._id} className='btn btn-primary'>Edit</Link>
+                        <DeleteBtn deleteAndRender={render} url={"http://localhost:5000/deleteProduct/" + value._id} />
                     </div>
                 ]
             )
@@ -63,7 +62,7 @@ function Banner() {
                 </div>
                 <div className='content_box'>
                     <div className='content_container'>
-                        <BreadCrumb pageName="Banners" link="/admin/banner/data" btnName="Add Banner" />
+                        <BreadCrumb pageName="Products" link="/admin/product/data" btnName="Add Product" />
                         <TableCommon tblData={<DynamicTable thData={th} tdData={td} />} />
                     </div>
                 </div>
@@ -72,4 +71,4 @@ function Banner() {
     )
 }
 
-export default Banner
+export default Product
