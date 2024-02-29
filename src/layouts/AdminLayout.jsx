@@ -11,6 +11,7 @@ import ProductData from '../admin/pages/ProductData';
 import PromotionalCategory from '../admin/pages/PromotionalCategory';
 import PromotionalCategoryData from '../admin/pages/PromotionalCategoryData';
 import KeywordInCity from '../admin/pages/KeywordInCity';
+import OurPresenceInCity from '../admin/pages/OurPresenceInCity';
 
 function SiteLayout() {
     return (
@@ -31,6 +32,7 @@ function SiteLayout() {
             <Route path='/admin/promotionalCategory/data/:_id' element={<PromotionalCategoryData />} />
 
             <Route path='/admin/keywordInCity' element={<KeywordInCity />} />
+            <Route path='/admin/ourPresenceInCity' element={<OurPresenceInCity />} />
 
             <Route path='/login' element={<Login />} />
         </Routes>

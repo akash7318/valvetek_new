@@ -7,8 +7,9 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
-import BusinessIcon from '@mui/icons-material/Business';
+import GradingIcon from '@mui/icons-material/Grading';
 import ApartmentIcon from '@mui/icons-material/Apartment';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 // import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 
 function Sidebar() {
@@ -44,7 +45,7 @@ function Sidebar() {
         },
         {
             name: 'Promotional Category',
-            icon: <BusinessIcon />,
+            icon: <GradingIcon />,
             link: '/admin/promotionalCategory',
             hasChildren: false,
             addClass: location.pathname === "/admin/promotionalCategory" ? "active" : null
@@ -55,6 +56,13 @@ function Sidebar() {
             link: '/admin/keywordInCity',
             hasChildren: false,
             addClass: location.pathname === "/admin/keywordInCity" ? "active" : null
+        },
+        {
+            name: 'Our Presence In City',
+            icon: <AddLocationAltIcon />,
+            link: '/admin/ourPresenceInCity',
+            hasChildren: false,
+            addClass: location.pathname === "/admin/ourPresenceInCity" ? "active" : null
         },
         // {
         //     name: 'Product',

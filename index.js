@@ -13,6 +13,7 @@ const SiteInfo = require('./db/SiteInfo');
 const Product = require('./db/Product');
 const PromotionalCategory = require('./db/PromotionalCategory');
 const KeywordInCity = require('./db/KeywordInCity');
+const OurPresenceInCity = require('./db/OurPresenceInCity');
 
 const app = express();
 app.use(express.json());
@@ -284,6 +285,8 @@ app.put('/changeActivePromotionalCategory/:_id', async (req, res) => {
     }
 });
 
+
+
 // Keyword In City
 app.get('/keywordInCity', async (req, res) => {
     const keywordInCity = await KeywordInCity.findOne();
@@ -302,6 +305,29 @@ app.post('/updateKeywordInCity', async (req, res) => {
     }
 
     const result = await KeywordInCity.updateOne({ $set: req.body });
+    res.send(result);
+});
+
+
+
+// Our Presence In City
+app.get('/ourPresenceInCity', async (req, res) => {
+    const ourPresenceInCity = await OurPresenceInCity.findOne();
+    res.send({ status: true, ourPresenceInCity: ourPresenceInCity });
+});
+
+// Update Our Presence In City
+app.post('/updateOurPresenceInCity', async (req, res) => {
+    const ourPresenceInCity = await OurPresenceInCity.findOne();
+    if (req.files && req.files.img) {
+        req.body.img = uploadFile(req.files.img, "/public/images/ourPresenceInCity/");
+    };
+
+    if (req.body.img !== undefined && ourPresenceInCity.img !== null) {
+        removeFile("/public/images/ourPresenceInCity/" + ourPresenceInCity.img);
+    }
+
+    const result = await OurPresenceInCity.updateOne({ $set: req.body });
     res.send(result);
 });
 
