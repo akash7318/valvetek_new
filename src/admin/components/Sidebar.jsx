@@ -5,6 +5,7 @@ import '../Admin.css';
 import PageNavi from './PageNavi';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import GradingIcon from '@mui/icons-material/Grading';
@@ -35,6 +36,13 @@ function Sidebar() {
             link: '/admin/banner',
             hasChildren: false,
             addClass: location.pathname === "/admin/banner" ? "active" : null
+        },
+        {
+            name: 'Pages',
+            icon: <AutoStoriesIcon />,
+            link: '/admin/pages',
+            hasChildren: false,
+            addClass: location.pathname === "/admin/pages" ? "active" : null
         },
         {
             name: 'Product',

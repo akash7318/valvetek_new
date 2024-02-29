@@ -1,25 +1,72 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from '../components/Nav';
 import Sidebar from '../components/Sidebar';
 import '../Admin.css';
 import Box from '../components/Box';
-import WebIcon from '@mui/icons-material/Web';
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import GradingIcon from '@mui/icons-material/Grading';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 
 function Dashboard() {
+
+    const [dashboard, setDashboard] = useState([]);
+
+    useEffect(() => {
+        getDashboard();
+    }, []);
+
+    const getDashboard = async () => {
+        let result = await fetch("http://localhost:5000/dashboard");
+        result = await result.json();
+        setDashboard(result);
+    }
 
     const boxData = [
         {
             'title': 'Site Info',
             'heading': 'Information',
-            'icon': <WebIcon className='fs-1' />,
+            'icon': <SettingsApplicationsIcon className='fs-1' />,
             'link': '/admin/site-info'
         },
         {
             'title': 'Banner',
-            'heading': '3',
+            'heading': dashboard.bannerCount,
             'icon': <ViewCarouselIcon className='fs-1' />,
             'link': '/admin/banner'
+        },
+        {
+            'title': 'Pages',
+            'heading': dashboard.pageCount,
+            'icon': <AutoStoriesIcon className='fs-1' />,
+            'link': '/admin/pages'
+        },
+        {
+            'title': 'Products',
+            'heading': dashboard.productCount,
+            'icon': <InventoryIcon className='fs-1' />,
+            'link': '/admin/product'
+        },
+        {
+            'title': 'Promotional Category',
+            'heading': dashboard.promotionalCategoryCount,
+            'icon': <GradingIcon className='fs-1' />,
+            'link': '/admin/promotionalCategory'
+        },
+        {
+            'title': 'Keyword',
+            'heading': "In City",
+            'icon': <ApartmentIcon className='fs-1' />,
+            'link': '/admin/keywordInCity'
+        },
+        {
+            'title': 'Our Presence',
+            'heading': "In City",
+            'icon': <AddLocationAltIcon className='fs-1' />,
+            'link': '/admin/ourPresenceInCity'
         }
     ];
 

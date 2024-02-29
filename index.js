@@ -9,6 +9,7 @@ require('./db/config');
 
 const User = require('./db/User');
 const Banner = require('./db/Banner');
+const Page = require('./db/Page');
 const SiteInfo = require('./db/SiteInfo');
 const Product = require('./db/Product');
 const PromotionalCategory = require('./db/PromotionalCategory');
@@ -29,6 +30,7 @@ const uploadFile = (file, destination) => {
     return fileName;
 }
 
+// Delete the file
 const removeFile = (file) => {
     fs.unlink(__dirname + file, (err) => {
         if (err) {
@@ -39,6 +41,8 @@ const removeFile = (file) => {
     })
 }
 
+
+
 // Login the user
 app.post('/login', async (req, res) => {
     const user = await User.findOne({ 'username': req.body.username, 'password': req.body.password }).select('-password');
@@ -48,6 +52,18 @@ app.post('/login', async (req, res) => {
         res.send({ status: false });
     }
 });
+
+
+app.get('/dashboard', async (req, res) => {
+    let data = {
+        bannerCount: await Banner.countDocuments(),
+        pageCount: await Page.countDocuments(),
+        productCount: await Product.countDocuments(),
+        promotionalCategoryCount: await PromotionalCategory.countDocuments(),
+    };
+    res.send(data);
+});
+
 
 // Site Information
 app.get('/siteInfo', async (req, res) => {
@@ -65,6 +81,8 @@ app.post('/updateSiteInfo', async (req, res) => {
     const result = await SiteInfo.updateOne({ $set: req.body });
     res.send(result);
 });
+
+
 
 // Banners list
 app.get('/banners', async (req, res) => {
@@ -128,6 +146,82 @@ app.delete('/deleteBanner/:_id', async (req, res) => {
 // Activate and deactivate the banner
 app.put('/changeActiveBanner/:_id', async (req, res) => {
     let result = await Banner.updateOne(
+        { _id: req.params._id },
+        {
+            $set: req.body
+        }
+    );
+    if (result.acknowledged && result.modifiedCount === 1) {
+        res.send({ status: true, message: "Success" });
+    } else {
+        res.send({ status: false, message: "Failed" });
+    }
+});
+
+
+
+// Page list
+app.get('/pages', async (req, res) => {
+    const pages = await Page.find();
+    if (pages.length > 0) {
+        res.send({ status: true, result: pages });
+    } else {
+        res.send({ status: false, message: "No Data Found." });
+    }
+});
+
+// single Page
+app.get('/page/:_id', async (req, res) => {
+    const page = await Page.findOne({ '_id': req.params._id });
+    if (page) {
+        res.send({ status: true, page: page });
+    } else {
+        res.send({ status: false, message: "No data found" });
+    }
+});
+
+// Create and update Page
+app.post('/savePage', async (req, res) => {
+    if (req.files && req.files.img) {
+        req.body.img = uploadFile(req.files.img, "/public/images/pages/");
+    }
+    req.body.isActive = true;
+    let page = [];
+    if (req.body.id) {
+        let result = await Page.findOne({ _id: req.body.id });
+        if (req.body.img !== undefined && result.img !== undefined) {
+            removeFile("/public/images/pages/" + result.img);
+        }
+        page = await Page.updateOne(
+            { '_id': req.body.id },
+            {
+                $set: req.body
+            }
+        );
+    } else {
+        page = new Page(req.body);
+        page = await page.save();
+    }
+    res.send({ status: true });
+});
+
+// // Delete the Page
+// app.delete('/deleteBanner/:_id', async (req, res) => {
+//     let data = await Banner.findOne({ _id: req.params._id });
+//     if (data.img !== undefined) {
+//         removeFile("/public/images/banners/" + data.img);
+//     }
+//     let result = await Banner.deleteOne({ _id: req.params._id });
+//     if (result.acknowledged && result.deletedCount === 1) {
+//         res.send({ status: true, message: "Banner deleted successfully" });
+//     } else {
+//         res.send({ status: false, message: 'No banner was deleted' });
+//     }
+// });
+
+// Activate and deactivate the Page
+app.put('/changeActivePage/:_id', async (req, res) => {
+    let result = await Page.updateOne(
         { _id: req.params._id },
         {
             $set: req.body

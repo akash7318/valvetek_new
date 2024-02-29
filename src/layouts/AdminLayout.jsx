@@ -4,6 +4,8 @@ import Dashboard from '../admin/pages/Dashboard';
 import SiteInfo from '../admin/pages/SiteInfo';
 import Banner from '../admin/pages/Banner';
 import BannerData from '../admin/pages/BannerData';
+import Pages from '../admin/pages/Pages';
+import PageData from '../admin/pages/PageData';
 
 import Login from '../Login';
 import Product from '../admin/pages/Product';
@@ -22,6 +24,10 @@ function SiteLayout() {
             <Route path='/admin/banner' element={<Banner />} />
             <Route path='/admin/banner/data' element={<BannerData />} />
             <Route path='/admin/banner/data/:_id' element={<BannerData />} />
+
+            <Route path='/admin/pages' element={<Pages />} />
+            {/* <Route path='/admin/banner/data' element={<BannerData />} /> */}
+            <Route path='/admin/page/data/:_id' element={<PageData />} />
 
             <Route path='/admin/product' element={<Product />} />
             <Route path='/admin/product/data' element={<ProductData />} />
